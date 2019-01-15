@@ -3,5 +3,8 @@
 
 CMakeFiles/project0.dir/main.cpp.obj: ../SDL_Plotter.h
 CMakeFiles/project0.dir/main.cpp.obj: ../color_rgb.h
+CMakeFiles/project0.dir/main.cpp.obj: ../curve.h
+CMakeFiles/project0.dir/main.cpp.obj: ../line.h
 CMakeFiles/project0.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/project0.dir/main.cpp.obj: ../point.h
 

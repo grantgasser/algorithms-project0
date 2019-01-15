@@ -88,7 +88,16 @@
 		<Unit filename="H:/Algorithms/project0/color_rgb.h">
 			<Option target="project0"/>
 		</Unit>
+		<Unit filename="H:/Algorithms/project0/curve.h">
+			<Option target="project0"/>
+		</Unit>
+		<Unit filename="H:/Algorithms/project0/line.h">
+			<Option target="project0"/>
+		</Unit>
 		<Unit filename="H:/Algorithms/project0/main.cpp">
+			<Option target="project0"/>
+		</Unit>
+		<Unit filename="H:/Algorithms/project0/point.h">
 			<Option target="project0"/>
 		</Unit>
 		<Unit filename="H:/Algorithms/project0/CMakeLists.txt">

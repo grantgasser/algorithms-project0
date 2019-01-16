@@ -45,4 +45,71 @@ private:
 
 };
 
+line::line(){
+    p1.setX(0);
+    p1.setY(0);
+    p2.setX(10);
+    p2.setY(10);
+
+    color.setR(256);
+    color.setG(0);
+    color.setB(0);
+
+    currentColor = 0;
+}
+
+line::line(point p1, point p2) {
+    this->p1 = p1;
+    this->p2 = p2;
+
+    color.setR(256);
+    color.setG(0);
+    color.setB(0);
+
+    currentColor = 0;
+}
+
+line::~line() {
+    p1.setX(0);
+    p1.setY(0);
+    p2.setX(0);
+    p2.setY(0);
+
+    color.setR(0);
+    color.setG(0);
+    color.setB(0);
+
+    currentColor = 0;
+}
+
+void line::display(ostream& out){
+    out << "Not sure what I'm displaying..." << endl;
+}
+
+void line::draw(SDL_Plotter& g){
+
+}
+
+void line::setP1(point p){
+    p1 = p;
+}
+
+void line::setP2(point p){
+    p2 = p;
+}
+
+void line::nextColor(){
+    currentColor++;
+}
+
+void line::resetColor(){
+    currentColor = 0;
+}
+
+bool line::slope(double& m){
+
+}
+bool line::intercept(double& b){
+
+}
 #endif //PROJECT0_LINE_H

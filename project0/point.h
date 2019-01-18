@@ -40,7 +40,7 @@ private:
 point::point() {
     x = 10;
     y = 10;
-    color.setR(256);
+    color.setR(255);
     color.setG(0);
     color.setB(0);
 }
@@ -48,7 +48,7 @@ point::point() {
 point::point(int x, int y) {
     this->x = x;
     this->y = y;
-    color.setR(256);
+    color.setR(255);
     color.setG(0);
     color.setB(0);
 }

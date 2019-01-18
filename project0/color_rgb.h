@@ -28,9 +28,9 @@ private:
 };
 
 color_rgb::color_rgb() {
-    r = 256;
-    g = 256;
-    b = 256;
+    r = 255;
+    g = 255;
+    b = 255;
 }
 
 color_rgb::color_rgb(int r, int g, int b) {

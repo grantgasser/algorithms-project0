@@ -48,10 +48,10 @@ private:
 line::line(){
     p1.setX(0);
     p1.setY(0);
-    p2.setX(10);
-    p2.setY(10);
+    p2.setX(20);
+    p2.setY(20);
 
-    color.setR(256);
+    color.setR(255);
     color.setG(0);
     color.setB(0);
 
@@ -62,7 +62,7 @@ line::line(point p1, point p2) {
     this->p1 = p1;
     this->p2 = p2;
 
-    color.setR(256);
+    color.setR(255);
     color.setG(0);
     color.setB(0);
 
@@ -87,8 +87,37 @@ void line::display(ostream& out){
 }
 
 void line::draw(SDL_Plotter& g){
+    double m, b;
+    int y;
+    double delta = 0.001;
 
+    if(slope(m)) {
+        intercept(b);
+        if(p1.getX() < p2.getX()) {
+            for(double x = p1.getX(); x <= p2.getX(); x += delta) {
+                y = m * x + b + 0.5;
+                g.plotPixel(x, y, color.getR(), color.getG(), color.getB());
+            }
+        }
+        else {
+            for(double x = p1.getX(); x >= p2.getX(); x -= delta) {
+                y = m * x + b + 0.5;
+                g.plotPixel(x, y, color.getR(), color.getG(), color.getB());
+            }
+        }
+    }
+    else {
+        if(p1.getY() > p2.getY()) {
+            delta = -1;
+        }
+        for(int y = p1.getY(); p1.getY() != p2.getY(); y += delta) {
+            g.plotPixel(p1.getX(), y, color.getR(), color.getG(), color.getB());
+        }
+    }
+
+    g.update();
 }
+
 
 void line::setP1(point p){
     p1 = p;
@@ -107,9 +136,26 @@ void line::resetColor(){
 }
 
 bool line::slope(double& m){
+    bool hasSlope = false;
 
+    hasSlope = (p1.getX() != p2.getX());
+
+    if(hasSlope) {
+        m = (p1.getY() - p2.getY()) / (p1.getX() - p2.getX());
+    }
+
+    return hasSlope;
 }
 bool line::intercept(double& b){
+    bool hasIntercept = false;
+    double m;
 
+    hasIntercept = slope(m);
+
+    if(hasIntercept) {
+        b = p1.getY() - (m * p1.getX());
+    }
+
+    return hasIntercept;
 }
 #endif //PROJECT0_LINE_H

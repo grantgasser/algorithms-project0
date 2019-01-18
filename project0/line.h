@@ -51,7 +51,7 @@ line::line(){
     p2.setX(20);
     p2.setY(20);
 
-    color.setR(255);
+    color.setR(0);
     color.setG(0);
     color.setB(0);
 
@@ -62,7 +62,7 @@ line::line(point p1, point p2) {
     this->p1 = p1;
     this->p2 = p2;
 
-    color.setR(255);
+    color.setR(0);
     color.setG(0);
     color.setB(0);
 

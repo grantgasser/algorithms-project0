@@ -37,7 +37,7 @@ private:
 };
 
 curve::curve() {
-    sameScale = false;
+    sameScale = true;
 }
 
 curve::~curve() {
@@ -85,18 +85,23 @@ void curve::draw(Data_t data, SDL_Plotter &g) {
 
     //Plot axes
     plotAxis(15, maxX, maxY, g);
-    plotTickMarks(20, maxX, maxY, g);
+    plotTickMarks(5, maxX, maxY, g);
 }
 
 void curve::plotAxis(int margin, int maxX, int maxY, SDL_Plotter &g) {
     line yAxis, xAxis;
 
     //set origin and end points for both x and y objects
-    point xOrigin(margin, margin);
-    point xEnd(margin+maxX, margin);
+    point xOrigin(margin, 500-margin);
+    point xEnd(margin+maxX, 500-margin);
 
-    point yOrigin(margin, margin);
-    point yEnd(margin, margin+maxY);
+    point yOrigin(margin, 500-margin);
+    point yEnd(margin, 500-maxY);
+
+    //TESTING
+    cout << "X origin and end: " << endl;
+    yOrigin.display(cout);
+    yEnd.display(cout);
 
 
     //set the origin and end points of the lines
@@ -106,7 +111,13 @@ void curve::plotAxis(int margin, int maxX, int maxY, SDL_Plotter &g) {
     yAxis.setP1(yOrigin);
 
     xAxis.draw(g);
-    yAxis.draw(g);
+    //yAxis.draw(g);
+
+    //draw Axes
+    for(int i = yEnd.getY(); i < yOrigin.getY(); i++){
+        g.plotPixel(margin, i, 0, 0, 0);
+    }
+    g.update();
 }
 
 void curve::plotTickMarks(int margin, int maxX, int maxY, SDL_Plotter &g) {

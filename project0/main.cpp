@@ -87,10 +87,10 @@ int main(int argc, char** argv) {
     set1.push_back(make_pair(4,80));
     set1.push_back(make_pair(5,160));
     set1.push_back(make_pair(6,320));
-    set1.push_back(make_pair(7,640));
-    set1.push_back(make_pair(8,1280));
-    set1.push_back(make_pair(9,2560));
-    set1.push_back(make_pair(10,5120));
+    //set1.push_back(make_pair(7,640));
+    //set1.push_back(make_pair(8,1280));
+    //set1.push_back(make_pair(9,2560));
+    //set1.push_back(make_pair(10,5120));
 
     data.push_back(set1);
 

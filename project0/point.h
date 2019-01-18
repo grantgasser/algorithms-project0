@@ -40,7 +40,7 @@ private:
 point::point() {
     x = 10;
     y = 10;
-    color.setR(255);
+    color.setR(0);
     color.setG(0);
     color.setB(0);
 }
@@ -48,7 +48,7 @@ point::point() {
 point::point(int x, int y) {
     this->x = x;
     this->y = y;
-    color.setR(255);
+    color.setR(0);
     color.setG(0);
     color.setB(0);
 }
@@ -106,7 +106,7 @@ point& point::operator=(const point& rhs){
 }
 
 void point::display(ostream& out){
-    out << "Not sure what I'm displaying here." << endl;
+    out << "(" << x << ", " << y << ")" << endl;
 }
 
 void point::draw(SDL_Plotter& g) {

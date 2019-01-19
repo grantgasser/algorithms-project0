@@ -1,5 +1,5 @@
-# algorithms-project0
+# Algorithms Project 0
 Plotting functions with SDL Plotter.
 
-# Short description
+### Short description
 Creating a program that plots functions to analyze algorithmic efficiency in later projects.

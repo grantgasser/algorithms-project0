@@ -94,10 +94,18 @@ int main(int argc, char** argv) {
 
     data.push_back(set1);
 
-    //Why trash? Expect 0, 10, 20
+    //Print contents
+    /*
     for(int i = 0; i < set1.size(); i++){
         cout << set1[i].second << endl;
+    }*/
+
+    DataSet_t set2;
+    for(int i = 0; i < 10000; i++){
+        set2.push_back(make_pair(i,i));
     }
+
+    //data.push_back(set2);
 
     crv.draw(data,g);
 

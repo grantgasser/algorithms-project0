@@ -42,7 +42,6 @@ private:
     bool slope(double& m);
     bool intercept(double& b);
     int currentColor;
-
 };
 
 line::line(){
@@ -128,7 +127,10 @@ void line::setP2(point p){
 }
 
 void line::nextColor(){
-    currentColor++;
+    currentColor += 50;
+    color.setB(currentColor);
+    color.setG(currentColor);
+    color.setR(currentColor);
 }
 
 void line::resetColor(){

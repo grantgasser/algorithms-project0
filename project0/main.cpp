@@ -87,12 +87,10 @@ int main(int argc, char** argv) {
     set1.push_back(make_pair(4,80));
     set1.push_back(make_pair(5,160));
     set1.push_back(make_pair(6,320));
-    //set1.push_back(make_pair(7,640));
-    //set1.push_back(make_pair(8,1280));
-    //set1.push_back(make_pair(9,2560));
-    //set1.push_back(make_pair(10,5120));
-
-    data.push_back(set1);
+    set1.push_back(make_pair(7,640));
+    set1.push_back(make_pair(8,1280));
+    set1.push_back(make_pair(9,2560));
+    set1.push_back(make_pair(10,5120));
 
     //Print contents
     /*
@@ -105,11 +103,35 @@ int main(int argc, char** argv) {
         set2.push_back(make_pair(i,i));
     }
 
-    //data.push_back(set2);
+    /*
+    for(int i = 0; i < set2.size(); i++){
+        cout << set2[i].second << endl;
+    }*/
+
+    DataSet_t set3;
+    for(int i = 0; i < 10000; i++){
+        set3.push_back(make_pair(i,(i*i)));
+    }
+
+    DataSet_t set4;
+    for(int i = 0; i < 1000; i++){
+        set4.push_back(make_pair(i,(static_cast<long double>(i)*i*i)));
+    }
+
+    DataSet_t set5;
+    for(int i = 1; i < 10000000; i+=1000){
+        set5.push_back(make_pair(i,log(i)));
+    }
+
+    data.push_back(set1);
+    data.push_back(set2);
+    data.push_back(set3);
+    data.push_back(set4);
+    data.push_back(set5);
 
     crv.draw(data,g);
 
-    g.Sleep(2000);
+    g.Sleep(3000);
 
     return 0;
 }

@@ -100,8 +100,6 @@ point& point::operator=(const point& rhs){
     this->y = rhs.y;
     this->color = rhs.color;
 
-    cout << "Called operator=" << endl;
-
     return *this;
 }
 

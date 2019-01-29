@@ -1,20 +1,22 @@
 /*
 * Author: Grant Gasser
 * Assignment Title: project0
-* File Description: Driver
+* Assignment Description: Draw functions
+* Date Created: 1/24/2019
+* Date Last Modified: 1/28/2019
 * Due Date: 1/28/2019
  */
 
- #include <iostream>
+#include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <cmath>
-#include <vector>
 #include "SDL_Plotter.h"
-#include "color_rgb.h"
 #include "point.h"
 #include "line.h"
+#include "color_rgb.h"
 #include "curve.h"
+
 
 using namespace std;
 
@@ -44,7 +46,6 @@ int main(int argc, char** argv) {
     set1.push_back(make_pair(8,1280));
     set1.push_back(make_pair(9,2560));
     set1.push_back(make_pair(10,5120));
-
 
     DataSet_t set2;
     for(int i = 0; i < 10000; i++){
@@ -87,6 +88,5 @@ int main(int argc, char** argv) {
         }
         g.update();
     }
-
     return 0;
 }

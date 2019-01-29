@@ -1,7 +1,9 @@
 /*
 * Author: Grant Gasser
 * Assignment Title: project0
-* File Description: Point class
+* Assignment Description: Point class
+* Date Created: 1/24/2019
+* Date Last Modified: 1/28/2019
 * Due Date: 1/28/2019
  */
 
@@ -36,84 +38,5 @@ private:
     int x, y;
     color_rgb color;
 };
-
-point::point() {
-    x = 10;
-    y = 10;
-    color.setR(0);
-    color.setG(0);
-    color.setB(0);
-}
-
-point::point(int x, int y) {
-    this->x = x;
-    this->y = y;
-    color.setR(0);
-    color.setG(0);
-    color.setB(0);
-}
-
-
-point::point(const point& p){
-    this->color = p.color;
-    this->x = p.x;
-    this->y = p.y;
-}
-
-point::~point(){
-    x = -1;
-    y = -1;
-
-    color.setR(0);
-    color.setB(0);
-    color.setG(0);
-}
-
-void point::setY(int y){
-    this->y = y;
-}
-
-void point::setX(int x){
-    this->x = x;
-}
-
-void point::setColor(color_rgb c){
-    this->color = c;
-}
-
-int point::getX(){
-    return x;
-}
-
-int point::getY(){
-    return y;
-}
-
-color_rgb point::getColor(){
-    return color;
-}
-
-point& point::operator=(const point& rhs){
-    this->x = rhs.x;
-    this->y = rhs.y;
-    this->color = rhs.color;
-
-    return *this;
-}
-
-void point::display(ostream& out){
-    out << "(" << x << ", " << y << ")" << endl;
-}
-
-void point::draw(SDL_Plotter& g) {
-
-    g.plotPixel(x, y, color.getR(), color.getG(), color.getB());
-
-    g.update();
-}
-
-
-
-
 
 #endif //PROJECT0_POINT_H

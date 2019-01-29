@@ -94,13 +94,13 @@ void line::draw(SDL_Plotter& g){
         intercept(b);
         if(p1.getX() < p2.getX()) {
             for(double x = p1.getX(); x <= p2.getX(); x += delta) {
-                y = m * x + b + 0.5;
+                y = m * x + b;
                 g.plotPixel(x, y, color.getR(), color.getG(), color.getB());
             }
         }
         else {
             for(double x = p1.getX(); x >= p2.getX(); x -= delta) {
-                y = m * x + b + 0.5;
+                y = m * x + b;
                 g.plotPixel(x, y, color.getR(), color.getG(), color.getB());
             }
         }
@@ -127,12 +127,14 @@ void line::setP2(point p){
 }
 
 void line::nextColor(){
-    currentColor += 50;
-    color = color_rgb(currentColor, currentColor, currentColor);
+    currentColor = 75;
+    int r = this->color.getR();
+    int b = this->color.getB();
+    color = color_rgb(r+currentColor, 0, b+currentColor);
 }
 
 void line::resetColor(){
-    currentColor = 0;
+    currentColor = 1;
 }
 
 bool line::slope(double& m){
@@ -141,7 +143,7 @@ bool line::slope(double& m){
     hasSlope = (p1.getX() != p2.getX());
 
     if(hasSlope) {
-        m = (p1.getY() - p2.getY()) / (p1.getX() - p2.getX());
+        m = double(p1.getY() - p2.getY()) / (p1.getX() - p2.getX());
     }
 
     return hasSlope;

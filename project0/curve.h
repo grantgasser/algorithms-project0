@@ -48,53 +48,60 @@ void curve::display(Data_t data, ostream &out) {
 }
 
 void curve::draw(Data_t data, SDL_Plotter &g) {
-    long int maxX = 0, maxY = 0;
+    int maxX = 0, maxY = 0;
     int x_1, y_1, x_2, y_2;
     point p1, p2;
-    double scale;
+    double x_scale, y_scale;
     line line;
+    line.setColor(color_rgb(0,150,0));
 
     int len = data.size();
 
 
     //each iteration is a line/curve
     for(int i = 0; i < len; i++){
-        long int numPts = data[i].size();
+        int numPts = data[i].size();
         double maxX_set = 0, maxY_set = 0;
-
 
         for(int j = 0; j < numPts; j++){
             //use scale variable to scale or divide the data
-            if(sameScale)
-                scale = 1;
+            if(sameScale){
+                x_scale = 1;
+                y_scale = 1;
+            }
             else {
                 //exp
                 if(i == 0){
-                    scale = 100;
+                    x_scale = 150;
+                    y_scale = 1;
                 }
                 //linear
                 if (i == 1) {
-                    scale = MAX_COL/MAX_ROW;
+                    x_scale = MAX_COL/MAX_ROW;
+                    y_scale = 1;
                 }
                 //quadratic
                 if (i == 2) {
-                    scale = MAX_COL/sqrt(MAX_ROW);
+                    x_scale = MAX_COL/sqrt(MAX_ROW);
+                    y_scale = 1;
                 }
                 //cubic
                 if (i == 3) {
-                    scale = MAX_COL/cbrt(MAX_ROW);
+                    x_scale = MAX_COL/cbrt(MAX_ROW);
+                    y_scale = 1;
                 }
                 //log
                 if(i == 4){
-                    scale = MAX_COL/100;
+                    x_scale = 1.0/35.0;
+                    y_scale = 35;
                 }
             }
 
             //set the scaled point values
-            x_1 = (data[i][j].first*scale) + MARGIN;
-            x_2 = (data[i][j+1].first*scale) + MARGIN;
-            y_1 = (MAX_ROW - MARGIN - data[i][j].second);
-            y_2 = (MAX_ROW - MARGIN - data[i][j+1].second);
+            x_1 = (data[i][j].first*x_scale) + MARGIN;
+            x_2 = (data[i][j+1].first*x_scale) + MARGIN;
+            y_1 = (MAX_ROW - MARGIN - (data[i][j].second*y_scale));
+            y_2 = (MAX_ROW - MARGIN - (data[i][j+1].second*y_scale));
 
             line.setP1(point(x_1,y_1));
             line.setP2(point(x_2, y_2));
@@ -119,13 +126,7 @@ void curve::draw(Data_t data, SDL_Plotter &g) {
             maxX = maxX_set;
         if(maxY_set > maxY)
             maxY = maxY_set;
-
-        //test
-        cout << "MaxY of set: " << maxY_set << endl;
-        cout << "MaxX of set: " << maxX_set << endl;
     }
-    cout << "MaxY: " << maxY << endl;
-    cout << "MaxX: " << maxX << endl;
 
     //Plot axes
     plotAxis(MARGIN, maxX, maxY, g);

@@ -128,9 +128,7 @@ void line::setP2(point p){
 
 void line::nextColor(){
     currentColor += 50;
-    color.setB(currentColor);
-    color.setG(currentColor);
-    color.setR(currentColor);
+    color = color_rgb(currentColor, currentColor, currentColor);
 }
 
 void line::resetColor(){

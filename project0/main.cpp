@@ -24,58 +24,11 @@ const int COL_MAX = 1000;
 
 int main(int argc, char** argv) {
     SDL_Plotter g(ROW_MAX,COL_MAX);
-
-    /*
-    //TEST COLOR
-    color_rgb c(5, 0 ,0);
-    color_rgb foo;
-
-    foo = c;
-
-    cout << foo.getR() << endl;
-
-    //TEST POINT
-    point p1(200,200);
-
-    g.Sleep(1000);
-    p1.draw(g);
-
-    g.Sleep(2000);
-
-    point p2;
-    p2 = p1;
-
-    p2.setX(300);
-    p2.setY(300);
-
-    p2.draw(g);
-
-    g.Sleep(2000);
-
-    point p3(p2);
-
-    p3.setX(400);
-    p3.setY(400);
-
-    p3.draw(g);
-
-    g.Sleep(2000);
-
-    p3.display(cout);
-
-    */
-
-    //TEST LINE
-    //g.Sleep(2000);
-    //line s;
-
-    //s.draw(g);
-    g.Sleep(1000);
-
-    //TEST CURVE
+    point p(50,50);
+    line s;
     curve crv;
-
-
+    color_rgb c;
+    char key;
 
     vector<DataSet_t> data;
 
@@ -92,21 +45,11 @@ int main(int argc, char** argv) {
     set1.push_back(make_pair(9,2560));
     set1.push_back(make_pair(10,5120));
 
-    //Print contents
-    /*
-    for(int i = 0; i < set1.size(); i++){
-        cout << set1[i].second << endl;
-    }*/
 
     DataSet_t set2;
     for(int i = 0; i < 10000; i++){
         set2.push_back(make_pair(i,i));
     }
-
-    /*
-    for(int i = 0; i < set2.size(); i++){
-        cout << set2[i].second << endl;
-    }*/
 
     DataSet_t set3;
     for(int i = 0; i < 10000; i++){
@@ -129,9 +72,21 @@ int main(int argc, char** argv) {
     data.push_back(set4);
     data.push_back(set5);
 
+    crv.setSameScale(true);
     crv.draw(data,g);
 
-    g.Sleep(3000);
+    while(!g.getQuit()){
+        if(g.kbhit()){
+            switch(g.getKey()){
+                case 'S':
+                    crv.setSameScale(!crv.getSameScale());
+                    g.clear();
+                    crv.draw(data,g);
+                    break;
+            }
+        }
+        g.update();
+    }
 
     return 0;
 }

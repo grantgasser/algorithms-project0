@@ -60,12 +60,10 @@ point::point(const point& p){
     this->y = p.y;
 }
 
-//WHAT TO SET TO?
 point::~point(){
     x = -1;
     y = -1;
 
-    //what to do with color?
     color.setR(0);
     color.setB(0);
     color.setG(0);

@@ -6,6 +6,7 @@
 #define PROJECT0_CURVE_H
 
 #include <vector>
+#include <cmath>
 #include "SDL_Plotter.h"
 #include "line.h"
 
@@ -30,8 +31,8 @@ private:
 
 };
 
-const int MAX_ROW = 500;
-const int MAX_COL = 1000;
+const double MAX_ROW = 500;
+const double MAX_COL = 1000;
 const int MARGIN = 50;
 
 curve::curve() {
@@ -47,17 +48,19 @@ void curve::display(Data_t data, ostream &out) {
 }
 
 void curve::draw(Data_t data, SDL_Plotter &g) {
-    int maxX = 0, maxY = 0, x_1, y_1, x_2, y_2;
+    long int maxX = 0, maxY = 0;
+    int x_1, y_1, x_2, y_2;
     point p1, p2;
     double scale;
+    line line;
 
     int len = data.size();
 
 
     //each iteration is a line/curve
     for(int i = 0; i < len; i++){
-        int numPts = data[i].size();
-        int maxX_set = 0, maxY_set = 0;
+        long int numPts = data[i].size();
+        double maxX_set = 0, maxY_set = 0;
 
 
         for(int j = 0; j < numPts; j++){
@@ -67,7 +70,7 @@ void curve::draw(Data_t data, SDL_Plotter &g) {
             else {
                 //exp
                 if(i == 0){
-                    scale = 20;
+                    scale = 100;
                 }
                 //linear
                 if (i == 1) {
@@ -83,7 +86,7 @@ void curve::draw(Data_t data, SDL_Plotter &g) {
                 }
                 //log
                 if(i == 4){
-                    scale = MAX_COL/log(MAX_ROW);
+                    scale = MAX_COL/100;
                 }
             }
 
@@ -93,13 +96,12 @@ void curve::draw(Data_t data, SDL_Plotter &g) {
             y_1 = (MAX_ROW - MARGIN - data[i][j].second);
             y_2 = (MAX_ROW - MARGIN - data[i][j+1].second);
 
-            line line(point(x_1, y_1), point(x_2, y_2)); //auto color is black
+            line.setP1(point(x_1,y_1));
+            line.setP2(point(x_2, y_2));
 
             //if points within box
             if(goodPoints(line, MARGIN, g))
                 line.draw(g);
-
-            line.nextColor();
 
             //find max points of individual data sets
             if(data[i][j].first > maxX && data[i][j].first < (MAX_COL-MARGIN)){
@@ -110,6 +112,7 @@ void curve::draw(Data_t data, SDL_Plotter &g) {
             }
 
         }
+        line.nextColor();
 
         //find max points of all the curves
         if(maxX_set > maxX)

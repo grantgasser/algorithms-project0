@@ -25,14 +25,16 @@ map
 H:/Algorithms/project0/color_rgb.h
 
 H:/Algorithms/project0/curve.h
+vector
+-
+cmath
+-
+iostream
+-
 SDL_Plotter.h
 H:/Algorithms/project0/SDL_Plotter.h
 line.h
 H:/Algorithms/project0/line.h
-iostream
--
-vector
--
 
 H:/Algorithms/project0/line.h
 color_rgb.h
@@ -55,10 +57,6 @@ cmath
 -
 SDL_Plotter.h
 H:/Algorithms/project0/SDL_Plotter.h
-color_rgb.h
-H:/Algorithms/project0/color_rgb.h
-point.h
-H:/Algorithms/project0/point.h
 point.h
 H:/Algorithms/project0/point.h
 line.h
